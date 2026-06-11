@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VENTIX.ID - Data Pemesanan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#f5f7fb;
+color:#111827;
+padding-bottom:140px;
+overflow-x:hidden;
+}
+
+/* BANNER */
+
+.banner{
+width:100%;
+position:relative;
+overflow:hidden;
+background:#fff;
+}
+
+.banner img{
+width:100%;
+display:block;
+max-height:420px;
+object-fit:cover;
+}
+
+/* TIMER */
+
+.timer-wrap{
+background:#fff;
+padding:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+box-shadow:0 4px 20px rgba(0,0,0,.05);
+}
+
+.timer{
+font-size:42px;
+font-weight:800;
+color:#3158ff;
+line-height:1;
+}
+
+.timer-text{
+margin-top:8px;
+font-size:14px;
+color:#6b7280;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:950px;
+margin:auto;
+padding:24px;
+}
+
+/* CARD */
+
+.card{
+background:#fff;
+border-radius:24px;
+padding:24px;
+box-shadow:0 8px 25px rgba(0,0,0,.05);
+margin-bottom:20px;
+border:1px solid #e5e7eb;
+}
+
+.card-title{
+font-size:24px;
+font-weight:800;
+margin-bottom:20px;
+}
+
+/* FORM */
+
+.form-group{
+margin-bottom:18px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:14px;
+border:1px solid #dbe2ea;
+border-radius:14px;
+font-size:15px;
+outline:none;
+transition:.25s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+border-color:#3158ff;
+box-shadow:0 0 0 4px rgba(49,88,255,.12);
+}
+
+textarea{
+resize:none;
+min-height:120px;
+}
+
+.ticket-counter{
+display:flex;
+align-items:center;
+gap:12px;
+margin-top:10px;
+}
+
+.ticket-counter button{
+width:48px;
+height:48px;
+border:none;
+border-radius:12px;
+background:#3158ff;
+color:#fff;
+font-size:24px;
+font-weight:700;
+cursor:pointer;
+}
+
+.ticket-counter span{
+font-size:24px;
+font-weight:800;
+min-width:50px;
+text-align:center;
+}
+
+.ticket-holder{
+margin-top:14px;
+}
+
+.ticket-holder input{
+margin-top:8px;
+}
+
+```html
+<div class="form-group">
+<label>Nomor WhatsApp</label>
+<input type="tel" id="whatsapp">
+</div>
+
+<div class="form-group">
+<label>Alamat</label>
+<textarea id="alamat"></textarea>
+</div>
+
+<div class="form-group">
+
+<label>Jumlah Tiket</label>
+
+<div class="ticket-counter">
+
+<button type="button" onclick="kurangTiket()">
+−
+</button>
+
+<span id="jumlahTiket">
+1
+</span>
+
+<button type="button" onclick="tambahTiket()">
++
+</button>
+
+</div>
+
+</div>
+
+<div id="holderContainer"></div>
+
+</div>
+
+<div class="card">
+
+<div class="check-wrap">
+
+<input
+type="checkbox"
+id="setuju">
+
+<label for="setuju">
+
+Saya menyatakan Data yang telah diisi sudah benar
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<button
+id="payBtn"
+class="pay-btn"
+disabled
+onclick="mulaiPembayaran()">
+
+BAYAR SEKARANG
+
+</button>
+
+</div>
+
+<script>
+
+let jumlahTiket = 1;
+
+const holderContainer =
+document.getElementById('holderContainer');
+
+function renderHolder(){
+
+holderContainer.innerHTML = '';
+
+if(jumlahTiket <= 1){
+return;
+}
+
+for(let i=2;i<=jumlahTiket;i++){
+
+holderContainer.innerHTML += `
+
+<div class="ticket-holder">
+
+<label>
+Nama Pemegang Tiket #${i}
+</label>
+
+<input
+type="text"
+class="holder-input"
+placeholder="Masukkan Nama Pemegang Tiket #${i}">
+
+</div>
+
+`;
+
+}
+
+cekForm();
+
+}
+
+function tambahTiket(){
+
+jumlahTiket++;
+
+document.getElementById(
+'jumlahTiket'
+).innerText = jumlahTiket;
+
+renderHolder();
+
+}
+
+function kurangTiket(){
+
+if(jumlahTiket <= 1){
+return;
+}
+
+jumlahTiket--;
+
+document.getElementById(
+'jumlahTiket'
+).innerText = jumlahTiket;
+
+renderHolder();
+
+}
+
+const formIds = [
+
+'nama',
+'identitas',
+'nomorIdentitas',
+'email',
+'whatsapp',
+'alamat',
+'setuju'
+
+];
+
+formIds.forEach(id=>{
+
+document
+.getElementById(id)
+.addEventListener(
+'input',
+cekForm
+);
+
+document
+.getElementById(id)
+.addEventListener(
+'change',
+cekForm
+);
+
+});
+
+function cekForm(){
+
+const nama =
+document.getElementById('nama').value.trim();
+
+const identitas =
+document.getElementById('identitas').value.trim();
+
+const nomor =
+document.getElementById('nomorIdentitas').value.trim();
+
+const email =
+document.getElementById('email').value.trim();
+
+const wa =
+document.getElementById('whatsapp').value.trim();
+
+const alamat =
+document.getElementById('alamat').value.trim();
+
+const setuju =
+document.getElementById('setuju').checked;
+
+let holderValid = true;
+
+document
+.querySelectorAll('.holder-input')
+.forEach(input=>{
+
+if(!input.value.trim()){
+
+holderValid = false;
+
+}
+
+});
+
+```html
+const valid =
+nama &&
+identitas &&
+nomor &&
+email &&
+wa &&
+alamat &&
+setuju &&
+holderValid;
+
+document.getElementById(
+'payBtn'
+).disabled = !valid;
+
+}
+
+renderHolder();
+
+let waktu = 600;
+
+const timerElement =
+document.getElementById('timer');
+
+const hitungMundur =
+setInterval(()=>{
+
+waktu--;
+
+let menit =
+Math.floor(waktu / 60);
+
+let detik =
+waktu % 60;
+
+timerElement.innerText =
+String(menit).padStart(2,'0')
++
+':'
++
+String(detik).padStart(2,'0');
+
+if(waktu <= 0){
+
+clearInterval(hitungMundur);
+
+alert(
+'Waktu pemesanan habis'
+);
+
+location.reload();
+
+}
+
+},1000);
+
+function mulaiPembayaran(){
+
+const loading =
+document.getElementById('loading');
+
+const loadingText =
+document.getElementById('loadingText');
+
+loading.style.display = 'flex';
+
+localStorage.setItem(
+'namaPemesan',
+document.getElementById('nama').value
+);
+
+localStorage.setItem(
+'emailPemesan',
+document.getElementById('email').value
+);
+
+localStorage.setItem(
+'waPemesan',
+document.getElementById('whatsapp').value
+);
+
+localStorage.setItem(
+'jumlahTiket',
+jumlahTiket
+);
+
+const pesan = [
+
+'PEMBAYARAN SEDANG DALAM PROSES',
+
+'PERIKSA DATA',
+
+'VERIFIKASI BUKTI PEMBAYARAN',
+
+'DATA SEDANG DIPROSES'
+
+];
+
+let index = 0;
+
+const gantiPesan =
+setInterval(()=>{
+
+index++;
+
+if(index >= pesan.length){
+
+index = 0;
+
+}
+
+loadingText.innerText =
+pesan[index];
+
+},3000);
+
+/*
+60 DETIK LOADING
+*/
+
+setTimeout(()=>{
+
+clearInterval(
+gantiPesan
+);
+
+window.location.href =
+'qris.html';
+
+},60000);
+
+}
+
+</script>
+
+</body>
+</html>
