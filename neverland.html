@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEVERLAND PROJECT</title>
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ICON -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#f5f5f5;
+      color:#111;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:100%;
+      max-width:900px;
+      margin:auto;
+      background:white;
+      min-height:100vh;
+      padding-bottom:120px;
+    }
+
+    /* BANNER */
+
+    .banner img{
+      width:100%;
+      display:block;
+      border-bottom-left-radius:30px;
+      border-bottom-right-radius:30px;
+    }
+
+    /* TITLE */
+
+    .main-title{
+      padding:30px 24px 10px;
+    }
+
+    .main-title h1{
+      font-size:36px;
+      font-weight:800;
+      line-height:1.2;
+      color:#111;
+    }
+
+    .main-title span{
+      color:#00b7ff;
+    }
+
+    section{
+      padding:20px;
+    }
+
+    /* CARD */
+
+    .card{
+      background:white;
+      border-radius:24px;
+      padding:24px;
+      margin-bottom:20px;
+      border:1px solid #ececec;
+      box-shadow:0 10px 30px rgba(0,0,0,.05);
+    }
+
+    .section-title{
+      font-size:22px;
+      font-weight:700;
+      margin-bottom:20px;
+      color:#111;
+    }
+
+    /* DETAIL */
+
+    .detail-item{
+      display:flex;
+      gap:16px;
+      margin-bottom:20px;
+      align-items:flex-start;
+    }
+
+    .detail-item i{
+      width:48px;
+      height:48px;
+      background:#00c8ff;
+      color:white;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      flex-shrink:0;
+    }
+
+    .detail-item h4{
+      font-size:14px;
+      color:#666;
+      margin-bottom:4px;
+    }
+
+    .detail-item p{
+      font-size:17px;
+      font-weight:600;
+      color:#111;
+    }
+
+    /* ORGANIZER */
+
+    .organizer{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .organizer-logo{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      background:#00c8ff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* SOCIAL */
+
+    .socials{
+      display:flex;
+      gap:16px;
+      margin-top:10px;
+    }
+
+    .socials a{
+      width:58px;
+      height:58px;
+      border-radius:18px;
+      background:#f2f2f2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      transition:.3s;
+      border:1px solid #e8e8e8;
+    }
+
+    .socials a:hover{
+      background:#00c8ff;
+      color:white;
+      transform:translateY(-4px);
+    }
+
+    /* MENU */
+
+    .menu-tabs{
+      display:flex;
+      gap:12px;
+      overflow:auto;
+      margin-bottom:24px;
+      padding-bottom:4px;
+    }
+
+    .menu-tabs a{
+      background:#f3f3f3;
+      padding:14px 20px;
+      border-radius:18px;
+      white-space:nowrap;
+      font-size:14px;
+      font-weight:600;
+      transition:.3s;
+      border:1px solid #ececec;
+    }
+
+    .menu-tabs a:hover{
+      background:#00c8ff;
+      color:white;
+    }
+
+    /* CONTENT */
+
+    .content-box{
+      background:white;
+      border-radius:24px;
+      padding:24px;
+      margin-bottom:22px;
+      border:1px solid #ececec;
+      box-shadow:0 8px 20px rgba(0,0,0,.04);
+    }
+
+    .content-box h2{
+      margin-bottom:18px;
+      font-size:25px;
+      color:#111;
+    }
+
+    .content-box p{
+      line-height:1.9;
+      color:#444;
+    }
+
+    ul{
+      padding-left:20px;
+      line-height:2;
+      color:#444;
+    }
+
+    /* FASILITAS */
+
+    .facility-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+      gap:16px;
+      margin-top:20px;
+    }
+
+    .facility{
+      background:#fafafa;
+      border-radius:22px;
+      padding:24px 14px;
+      text-align:center;
+      border:1px solid #ededed;
+      transition:.3s;
+    }
+
+    .facility:hover{
+      background:#00c8ff;
+      color:white;
+      transform:translateY(-5px);
+    }
+
+    .facility i{
+      font-size:32px;
+      margin-bottom:12px;
+    }
+
+    .facility h4{
+      font-size:14px;
+      font-weight:600;
+    }
+
+    /* FLOATING BUTTON */
+
+    .floating-ticket-btn{
+      position:fixed;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:9999;
+
+      background:linear-gradient(135deg,#00c8ff,#0099ff);
+      color:white;
+
+      padding:16px 28px;
+      border-radius:999px;
+
+      font-weight:700;
+      font-size:16px;
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      box-shadow:
+      0 10px 25px rgba(0,0,0,.15),
+      0 5px 10px rgba(0,200,255,.35);
+
+      transition:.3s;
+      animation:floatButton 2s ease-in-out infinite;
+    }
+
+    .floating-ticket-btn:hover{
+      transform:translateX(-50%) scale(1.05);
+    }
+
+    .floating-ticket-btn i{
+      font-size:18px;
+    }
+
+    @keyframes floatButton{
+
+      0%{
+        transform:translateX(-50%) translateY(0px);
+      }
+
+      50%{
+        transform:translateX(-50%) translateY(-4px);
+      }
+
+      100%{
+        transform:translateX(-50%) translateY(0px);
+      }
+
+    }
+
+    footer{
+      text-align:center;
+      padding:40px 20px;
+      color:#777;
+      font-size:13px;
+    }
+
+    @media(max-width:600px){
+
+      .main-title h1{
+        font-size:28px;
+      }
+
+      .floating-ticket-btn{
+        width:90%;
+        justify-content:center;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- BANNER -->
+  <div class="banner">
+    <img src="banner-poliponi.png" alt="Banner Event">
+  </div>
+
+  <!-- TITLE -->
+  <div class="main-title">
+    <h1>POLIPONI 2026 <span>- BALI</span></h1>
+  </div>
+
+  <section>
+
+    <!-- DETAIL -->
+    <div class="card">
+
+      <div class="section-title">
+        DETAIL ACARA
+      </div>
+
+      <div class="detail-item">
+        <i class="fa-solid fa-calendar"></i>
+
+        <div>
+          <h4>Tanggal</h4>
+          <p>04 Juli 2026</p>
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <i class="fa-solid fa-clock"></i>
+
+        <div>
+          <h4>Jam</h4>
+          <p>14.00 - 23.00 WITA</p>
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <i class="fa-solid fa-location-dot"></i>
+
+        <div>
+          <h4>Lokasi</h4>
+          <p>BALI UNITED TRAINING CENTER</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PENYELENGGARA -->
+    <div class="card">
+
+      <div class="section-title">
+        PENYELENGGARA
+      </div>
+
+      <div class="organizer">
+
+        <div class="organizer-logo">
+       <img src="logo-poliponi.jpg" alt="logo Event">
+         
+   </div>
+
+        <div>
+          <h3>PT. AMAZING LETRALIVE</h3>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SOSMED -->
+    <div class="card">
+
+      <div class="section-title">
+        MEDIA SOSIAL
+      </div>
+
+      <div class="socials">
+
+        <a href="#">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="#">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- MENU -->
+    <div class="menu-tabs">
+
+      <a href="#deskripsi">
+        DESKRIPSI
+      </a>
+
+      <a href="#syarat">
+        SYARAT & KETENTUAN
+      </a>
+
+      <a href="#fasilitas">
+        FASILITAS
+      </a>
+
+    </div>
+
+    <!-- DESKRIPSI -->
+    <div class="content-box" id="deskripsi">
+
+      <h2>DESKRIPSI</h2>
+
+      <p>
+        POLIPONI 2026 hadir sebagai festival musik spektakuler di Bali
+        dengan menghadirkan line-up terbaik Indonesia seperti Sheila On 7,
+        Hindia, Feast, 510, dan Dialog Dini Hari.
+      </p>
+
+      <br>
+
+      <p>
+        Acara ini akan berlangsung di Bali United Training Center pada
+        tanggal 04 Juli 2026 mulai pukul 14.00 WITA hingga selesai.
+        Nikmati konser megah dengan tata panggung modern, lighting spektakuler,
+        area kuliner, merchandise official, dan berbagai aktivitas menarik.
+      </p>
+
+      <br>
+
+      <p>
+        Jangan lewatkan pengalaman konser terbaik bersama ribuan penonton
+        lainnya di POLIPONI 2026 - BALI.
+      </p>
+
+    </div>
+
+    <!-- SYARAT -->
+    <div class="content-box" id="syarat">
+
+      <h2>SYARAT & KETENTUAN</h2>
+
+      <ul>
+
+        <li>Tiket yang sudah dibeli tidak dapat dikembalikan.</li>
+
+        <li>Wajib menunjukkan e-ticket saat penukaran tiket.</li>
+
+        <li>Dilarang membawa senjata tajam, narkoba, dan minuman keras.</li>
+
+        <li>Dilarang membawa makanan dan minuman dari luar venue.</li>
+
+        <li>Tiket hanya berlaku untuk 1 orang.</li>
+
+        <li>Pihak penyelenggara berhak menolak pengunjung yang melanggar aturan.</li>
+
+        <li>Pengunjung wajib menjaga keamanan dan ketertiban acara.</li>
+
+        <li>Acara dapat berubah sewaktu-waktu sesuai kondisi.</li>
+
+      </ul>
+
+    </div>
+
+    <!-- FASILITAS -->
+    <div class="content-box" id="fasilitas">
+
+      <h2>FASILITAS</h2>
+
+      <div class="facility-grid">
+
+        <div class="facility">
+          <i class="fa-solid fa-toilet"></i>
+          <h4>Toilet</h4>
+        </div>
+
+        <div class="facility">
+          <i class="fa-solid fa-burger"></i>
+          <h4>Food Court</h4>
+        </div>
+
+        <div class="facility">
+          <i class="fa-solid fa-shirt"></i>
+          <h4>Merchandise</h4>
+        </div>
+
+        <div class="facility">
+          <i class="fa-solid fa-square-parking"></i>
+          <h4>Parking</h4>
+        </div>
+
+        <div class="facility">
+          <i class="fa-solid fa-kit-medical"></i>
+          <h4>Medical</h4>
+        </div>
+
+        <div class="facility">
+          <i class="fa-solid fa-camera"></i>
+          <h4>Photo Spot</h4>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 POLIPONI BALI • Powered by PT. AMAZING LETRALIVE
+  </footer>
+
+</div>
+
+<!-- FLOATING BUTTON -->
+
+<a href="https://ticketonline2026.github.io/PILIH-TIKET/"
+target="_blank"
+class="floating-ticket-btn">
+
+<i class="fa-solid fa-ticket"></i>
+BELI TIKET
+
+</a>
+
+</body>
+</html>
